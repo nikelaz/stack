@@ -7,7 +7,7 @@ class Stack
 {
   private:
     std::shared_ptr<LinkedList<T>> list;
-    int size;
+    unsigned int size;
 
   public:
     Stack();
@@ -15,7 +15,7 @@ class Stack
     void pop();
     T top();
     bool isEmpty();
-    int getSize();
+    unsigned int getSize();
 };
 
 template <class T>
@@ -52,6 +52,6 @@ bool Stack<T>::isEmpty() {
 }
 
 template <class T>
-int Stack<T>::getSize() {
+unsigned int Stack<T>::getSize() {
   return size;
 }
