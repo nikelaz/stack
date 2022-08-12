@@ -1,12 +1,12 @@
 #pragma once
 #include <memory.h>
-#include "LinkedList.h"
+#include <forward_list>
 
 template <class T>
 class Stack
 {
   private:
-    std::shared_ptr<LinkedList<T>> list;
+    std::shared_ptr<std::forward_list<T>> list;
     unsigned int size;
 
   public:
@@ -20,14 +20,13 @@ class Stack
 
 template <class T>
 Stack<T>::Stack() {
-  std::shared_ptr<LinkedList<T>> newList(new LinkedList<T>());
-  list = newList;
+  list = std::shared_ptr<std::forward_list<T>>(new std::forward_list<T>());
   size = 0;
 }
 
 template <class T>
 void Stack<T>::push(T inputData) {
-  list->push(inputData);
+  list->push_front(inputData);
   size += 1;
 }
 
@@ -35,7 +34,7 @@ template <class T>
 void Stack<T>::pop() {
   if (isEmpty()) return;
 
-  list->pop();
+  list->pop_front();
   size -= 1;
 }
 
@@ -43,7 +42,7 @@ template <class T>
 T Stack<T>::top() {
   if (isEmpty()) return NULL;
 
-  return list->getHead()->getData();
+  return list->front();
 }
 
 template <class T>
