@@ -6,7 +6,7 @@ template <class T>
 class Stack
 {
   private:
-    std::shared_ptr<std::forward_list<T>> list;
+    std::unique_ptr<std::forward_list<T>> container;
     unsigned int size;
 
   public:
@@ -20,13 +20,13 @@ class Stack
 
 template <class T>
 Stack<T>::Stack() {
-  list = std::shared_ptr<std::forward_list<T>>(new std::forward_list<T>());
+  container = std::unique_ptr<std::forward_list<T>>(new std::forward_list<T>());
   size = 0;
 }
 
 template <class T>
 void Stack<T>::push(T inputData) {
-  list->push_front(inputData);
+  container->push_front(inputData);
   size += 1;
 }
 
@@ -34,7 +34,7 @@ template <class T>
 void Stack<T>::pop() {
   if (isEmpty()) return;
 
-  list->pop_front();
+  container->pop_front();
   size -= 1;
 }
 
@@ -42,7 +42,7 @@ template <class T>
 T Stack<T>::top() {
   if (isEmpty()) return NULL;
 
-  return list->front();
+  return container->front();
 }
 
 template <class T>

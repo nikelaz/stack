@@ -51,5 +51,7 @@ int main() {
 
   std::cout << "Stack instance size: " << stackInstance.getSize() << std::endl;
 
+  std::cin.get();
+
   return 0;
 }
