@@ -46,6 +46,9 @@ int main() {
   std::cout << "Popping the top element of the stack.." << std::endl;
 
   stackInstance.pop();
+  stackInstance.pop();
+  stackInstance.pop();
+  stackInstance.pop();
 
   std::cout << "Top of the stack: " << stackInstance.top() << std::endl;
 

@@ -1,6 +1,14 @@
 #pragma once
 #include <memory.h>
 #include <forward_list>
+#include <exception>
+
+class UnderflowException : public std::exception {
+public:
+  char* what() {
+    return "An underflow exception occured.";
+  }
+};
 
 template <class T>
 class Stack
@@ -32,7 +40,9 @@ void Stack<T>::push(T inputData) {
 
 template <class T>
 void Stack<T>::pop() {
-  if (isEmpty()) return;
+  if (isEmpty()) {
+    throw UnderflowException();
+  }
 
   container->pop_front();
   size -= 1;
